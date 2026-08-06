@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+
+# SPDX-FileCopyrightText: 2026 Damián Búho <damian.buho@proton.me>
+#
+# SPDX-License-Identifier: MIT
+
+  set -e
+
+  # shellcheck source=/dev/null
+  . b19-i18n
+
+  # Cross-compile GO Dependencies
+  # Each package in /deps/build.go.deps is cross-built once per arch in
+  # B19_GO_CROSS_ARCHES, producing ${GOBIN}/<binary>.<arch>. Used to break
+  # OS-layer bootstrap cycles (e.g. b19/dasel emits dasel.{amd64,arm64,riscv64}
+  # from a single amd64 builder so b19/ubuntu can pick the right one per arch).
+
+  DEPSLIST="/deps/build.go.deps"
+
+  # Cross-build GO dependencies from go.build.deps
+  if [[ -f "${DEPSLIST}" ]]; then
+    b19-log good "GOCROSS" "$(_p "Cross-build dep list detected: %s" "${DEPSLIST}")"
+
+    # Ensure newline at the end (so the last line is read correctly)
+    if [[ -s "${DEPSLIST}" && $(tail -n 1 "${DEPSLIST}") != "" ]]; then
+      echo "" >> "${DEPSLIST}"
+    fi
+
+    # Default arch list matches b19 multiarch baseline; consumers may override.
+    ARCHES="${B19_GO_CROSS_ARCHES:-amd64 arm64 riscv64}"
+    b19-log good "GOCROSS" "$(_p "Target arches: %s" "${ARCHES}")"
+
+    while read -r PACKAGE; do
+      [[ -z "${PACKAGE}" ]] && continue
+
+      # Derive output binary name from the package path:
+      # "github.com/.../cmd/dasel@v3.8.1" -> "dasel@v3.8.1" -> "dasel"
+      BINARY="${PACKAGE##*/}"
+      BINARY="${BINARY%@*}"
+
+      # go install: GOBIN forbidden when cross-compiling; go build: @version
+      # syntax unsupported. Fix: scratch module + go get resolves the version,
+      # then go build -o (absolute path) works for every arch without GOBIN.
+      TMPMOD="$(mktemp --directory)"
+      b19-run "GOCROSS" "$(_p "Init scratch module for %s" "${PACKAGE}")" --  \
+        go -C "${TMPMOD}" mod init cross-build-temp
+      b19-run "GOCROSS" "$(_p "Fetch %s" "${PACKAGE}")" --  \
+        go -C "${TMPMOD}" get "${PACKAGE}"
+
+      for ARCH in ${ARCHES}; do
+        b19-run "GOCROSS" "$(_p "Cross-build %s for %s" "${BINARY}" "${ARCH}")" --  \
+          env GOOS=linux GOARCH="${ARCH}" \
+            go -C "${TMPMOD}" build -o "${GOBIN}/${BINARY}.${ARCH}" "${PACKAGE%@*}"
+      done
+
+      rm -rf "${TMPMOD}"
+    done < <(decomment < "${DEPSLIST}")
+
+    b19-run "GOCROSS" "$(_p "Remove %s" "${DEPSLIST}")" --  \
+      rm "${DEPSLIST}" # We don't need inheritance here
+  else
+    b19-log warn "GOCROSS" "$(_p "Cross-build dep list not found: %s" "${DEPSLIST}")"
+  fi
+  # We WON'T clean cache to save BuildKit optimizations

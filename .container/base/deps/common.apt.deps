@@ -1,0 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Damián Búho <damian.buho@proton.me>
+#
+# SPDX-License-Identifier: MIT
+
+binutils                       # GNU assembler, linker and binary utilities | deps: libbinutils, libc6, libgcc-s1, libgprofng0, libstdc++6, binutils-common, binutils-x86-64-linux-gnu
+git                            # fast, scalable, distributed revision control system | deps: libc6, libcurl3t64-gnutls, libexpat1, libpcre2-8-0, zlib1g, perl, liberror-perl, git-man, git-man

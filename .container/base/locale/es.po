@@ -1,0 +1,81 @@
+# SPDX-FileCopyrightText: 2026 Damián Búho <damian.buho@proton.me>
+# Copyright (C) 2026 b19
+#
+# SPDX-License-Identifier: MIT
+msgid ""
+msgstr ""
+"Project-Id-Version: b19-go\n"
+"Report-Msgid-Bugs-To: i18n@b19.dev\n"
+"POT-Creation-Date: 2026-05-02 16:15-0300\n"
+"PO-Revision-Date: 2026-02-18 00:00+0000\n"
+"Last-Translator: b19 team\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .container/base/tools.d/install-go-from-deps:25
+msgid "Install package with env"
+msgstr "Instalar paquete con env"
+
+#: .container/base/tools.d/install-go-from-deps:28
+msgid "Install package"
+msgstr "Instalar paquete"
+
+#: .container/base/tools.d/install-go-from-deps:33
+msgid "Remove"
+msgstr "Eliminar"
+
+#: .container/base/tools.d/b19-strip:13
+msgid "Binary path required"
+msgstr "Se requiere ruta del binario"
+
+#: .container/base/tools.d/b19-strip:18
+msgid "Binary not found: %s"
+msgstr "Binario no encontrado: %s"
+
+#: .container/base/tools.d/b19-strip:26
+msgid "Strip"
+msgstr "Depurar"
+
+#: .container/base/tools.d/b19-strip:33
+msgid "Reduced %s from %s to %s (%s%%)"
+msgstr "Se redujo %s de %s a %s (%s%%)"
+
+#: .container/base/tools.d/build-go-from-deps:18
+msgid "Cross-build dep list detected: %s"
+msgstr "Lista de deps para compilación cruzada detectada: %s"
+
+#: .container/base/tools.d/build-go-from-deps:27
+msgid "Target arches: %s"
+msgstr "Arquitecturas objetivo: %s"
+
+#: .container/base/tools.d/build-go-from-deps:41
+msgid "Init scratch module for %s"
+msgstr ""
+
+#: .container/base/tools.d/build-go-from-deps:43
+msgid "Fetch %s"
+msgstr ""
+
+#: .container/base/tools.d/build-go-from-deps:47
+msgid "Cross-build %s for %s"
+msgstr "Compilación cruzada de %s para %s"
+
+#: .container/base/tools.d/build-go-from-deps:55
+msgid "Remove %s"
+msgstr "Eliminar %s"
+
+#: .container/base/tools.d/build-go-from-deps:58
+msgid "Cross-build dep list not found: %s"
+msgstr "Lista de deps para compilación cruzada no encontrada: %s"
+
+#: .container/base/build.d/base/post/300-install-go.sh:8
+msgid "Extract %s"
+msgstr "Extraer %s"
+
+#: .container/base/build.d/base/post/300-install-go.sh:15
+msgid "Turn off telemetry"
+msgstr "Desactivar telemetría"

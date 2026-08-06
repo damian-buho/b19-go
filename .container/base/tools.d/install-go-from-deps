@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+# SPDX-FileCopyrightText: 2026 Damián Búho <damian.buho@proton.me>
+#
+# SPDX-License-Identifier: MIT
+
+  set -e
+
+  # shellcheck source=/dev/null
+  . b19-i18n
+
+  # Install GO Dependencies
+
+  DEPSLIST="/deps/go.deps"
+
+  # Install GO dependencies from go.deps
+  if [[ -f "${DEPSLIST}" ]]; then
+    b19-log good "GO" "GO Dependencies list ${DEPSLIST} is detected"
+
+    # Ensure newline at the end (so the last line is read correctly)
+    if [[ -s "${DEPSLIST}" && $(tail -n 1 "${DEPSLIST}") != "" ]]; then
+      echo "" >> "${DEPSLIST}"
+    fi
+
+    while read -r PACKAGE ENV_SPEC; do
+      [[ -z "${PACKAGE}" ]] && continue
+
+      if [[ -n "${ENV_SPEC}" ]]; then
+        b19-run "GO" "$(_ "Install package with env") ${PACKAGE} (${ENV_SPEC})" --  \
+          env "${ENV_SPEC}" go install "${PACKAGE}"
+      else
+        b19-run "GO" "$(_ "Install package") ${PACKAGE}" --  \
+          go install "${PACKAGE}"
+      fi
+    done < <(decomment < "${DEPSLIST}")
+
+    b19-run "GO" "$(_ "Remove") ${DEPSLIST}" --  \
+      rm "${DEPSLIST}" # We don't need inheritance here
+  else
+    b19-log warn "GO" "GO Dependencies list ${DEPSLIST} is not detected"
+  fi
+  # We WON'T clean cache to save BuildKit optimizations

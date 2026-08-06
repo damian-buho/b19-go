@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+# SPDX-FileCopyrightText: 2026 Damián Búho <damian.buho@proton.me>
+#
+# SPDX-License-Identifier: MIT
+
+# b19-strip - Strip binary and log size reduction
+# Usage: b19-strip TAG binary_path
+
+set -o pipefail
+
+  # shellcheck source=/dev/null
+  . b19-i18n
+
+  TAG="${1:-UNKNOWN}"
+  BINARY="${2}"
+
+  if [[ -z "${BINARY}" ]]; then
+    b19-log error "STRIP" "$(_ "Binary path required")"
+    exit 1
+  fi
+
+  if [[ ! -f "${BINARY}" ]]; then
+    b19-log error "STRIP" "$(_p "Binary not found: %s" "${BINARY}")"
+    exit 1
+  fi
+
+  # Measure size before
+  BEFORE=$(stat -c%s "${BINARY}")
+
+  # Strip the binary
+  b19-run "${TAG}" "$(_ "Strip")" -- strip --strip-all --strip-unneeded "${BINARY}"
+
+  # Measure size after
+  AFTER=$(stat -c%s "${BINARY}")
+
+  # Calculate and log reduction
+  REDUCTION=$(( 100 - (AFTER * 100 / BEFORE) ))
+  b19-log info "${TAG}" "$(_p "Reduced %s from %s to %s (%s%%)" "${BINARY}" "${BEFORE}" "${AFTER}" "${REDUCTION}")"

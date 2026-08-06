@@ -1,0 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Damián Búho <damian.buho@proton.me>
+#
+# SPDX-License-Identifier: MIT
+
+https://dl.google.com/go/go${M6E_UPSTREAM_VERSION}.linux-${TARGETARCH}.tar.gz
