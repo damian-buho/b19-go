@@ -4,13 +4,13 @@ SPDX-License-Identifier: MIT
 pf-cli-managed: yes
 -->
 
-<!-- textlint-disable terminology -->
+<!-- textlint-disable terminology,common-misspellings -->
 
 [English](../../README.md) · [Español](../es/README.md)
 
 # B19/Go
 
-Go toolchain from upstream tarball in b19-style
+Дистрибуція Go з підтримкою спільноти на основі B19/Ubuntu
 
 [![Stand with Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://damian-buho.github.io/support-ukraine/) [![License](https://img.shields.io/static/v1?label=license&message=MIT&color=4c1&style=flat-square)](LICENSE) ![Commit style](https://img.shields.io/static/v1?label=commits&message=conventional&color=blue&style=flat-square) ![Workflow](https://img.shields.io/static/v1?label=workflow&message=git-flow&color=blue&style=flat-square) ![Versioning](https://img.shields.io/static/v1?label=versioning&message=semantic&color=blue&style=flat-square) [![PRs welcome](https://img.shields.io/static/v1?label=PRs&message=welcome&color=4c1&style=flat-square)](CONTRIBUTING.md) [![Citation](https://img.shields.io/static/v1?label=citation&message=cff&color=blue&style=flat-square)](CITATION.cff) [![REUSE compliance](https://api.reuse.software/badge/codeberg.org/b19/go)](https://api.reuse.software/info/codeberg.org/b19/go)
 
@@ -20,13 +20,13 @@ Go toolchain from upstream tarball in b19-style
 
 ## Можливості
 
-- Architecture-optimized builds
-- Binary stripping with size reporting (b19-strip)
-- Cross-compilation for multiple architectures
-- Persistent Go build and module caches
-- Declarative Go package installation (go.deps)
-- Go toolchain from upstream tarball
-- CGO-disabled static builds by default
+- Збірки, оптимізовані під архітектуру
+- Stripping бінарних файлів зі звітом про розмір (b19-strip)
+- Крос-компіляція для кількох архітектур
+- Постійні кеші збирання та модулів Go
+- Декларативне встановлення Go-пакетів (go.deps)
+- Інструментальний ланцюжок Go з upstream-тарбола
+- Статичні збірки з типово вимкненим CGO
 - Persistent APT cache across builds
 - Service process management with log routing (b19-exec)
 - Cached artifact downloads with integrity verification (b19-fetch)
@@ -55,7 +55,7 @@ Go toolchain from upstream tarball in b19-style
 - Pre-installed utility tools
 - XDG Base Directory paths
 
-Див. [FEATURES.md](../../FEATURES.md), щоб переглянути повний перелік.
+Див. [FEATURES.md](FEATURES.md), щоб переглянути повний перелік.
 
 ## Що надає цей проєкт
 
@@ -116,12 +116,18 @@ FROM docker.io/damianbuho/b19-go:latest
 
 ## Посилання
 
+### Проєкт
+
 - [Специфікація Projectfile](https://projectfile.org)
-- [B19/Go on Codeberg](https://codeberg.org/b19/go)
-- [B19/Go on GitHub](https://github.com/damian-buho/b19-go)
-- [B19/Go on kiota.ch](https://kiota.ch/b19/go)
-- [Issues on Codeberg](https://codeberg.org/b19/go/issues)
-- [Issues on GitHub](https://github.com/damian-buho/b19-go/issues)
+- [B19/Go на Codeberg](https://codeberg.org/b19/go)
+- [B19/Go на GitHub](https://github.com/damian-buho/b19-go)
+- [B19/Go на kiota.ch](https://kiota.ch/b19/go)
+- [Issues на Codeberg](https://codeberg.org/b19/go/issues)
+- [Issues на GitHub](https://github.com/damian-buho/b19-go/issues)
+
+### Інше
+
+- [Від автора](https://dbuho.me)
 
 ## Ліцензія
 
