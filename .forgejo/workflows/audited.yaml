@@ -25,8 +25,12 @@ jobs:
   image-is-audited:
     runs-on: docker
     if: (github.event_name == 'workflow_dispatch') || (github.event_name == 'schedule')
+    strategy:
+      matrix:
+        M6E_ARCH: ["amd64", "arm64", "riscv64"]
     env:
-      M6E_IMAGE_PUBLISHED: ${{ vars.OUTPUT_REGISTRY }}/b19/go:latest
+      M6E_ARCH: ${{ matrix.M6E_ARCH }}
+      M6E_IMAGE_PUBLISHED: kiota.ch/b19/go:latest
     steps:
       - uses: actions/checkout@v7
         with:
@@ -38,7 +42,8 @@ jobs:
           version: ${{ env.M6E_TAG }}
           run: auto-grype image
           env: |-
-            M6E_IMAGE_PUBLISHED=${{ vars.OUTPUT_REGISTRY }}/b19/go:latest
+            M6E_ARCH=${{ matrix.M6E_ARCH }}
+            M6E_IMAGE_PUBLISHED=kiota.ch/b19/go:latest
           mounts: /app/data/ci-cache/grype-db:/app/.cache/grype:ro
       - name: trivy-scan-registry
         uses: projectfile/ci-actions/run-tool@v1
@@ -47,18 +52,24 @@ jobs:
           version: ${{ env.M6E_TAG }}
           run: auto-trivy image
           env: |-
-            M6E_IMAGE_PUBLISHED=${{ vars.OUTPUT_REGISTRY }}/b19/go:latest
+            M6E_ARCH=${{ matrix.M6E_ARCH }}
+            M6E_IMAGE_PUBLISHED=kiota.ch/b19/go:latest
             TRIVY_CACHE_BACKEND
           mounts: /app/data/ci-cache/trivy-db:/app/.cache/trivy:ro
       - uses: actions/upload-artifact@v3
         if: ${{ always() }}
         with:
-          name: reports-image-is-audited-${{ github.run_id }}
+          name: reports-image-is-audited-${{ matrix.M6E_ARCH }}-${{ github.run_id }}
           path: reports/
           if-no-files-found: warn
   source-is-audited:
     runs-on: docker
+    needs: ["source-is-secure"]
     if: (github.event_name == 'workflow_dispatch') || (github.event_name == 'schedule')
+    steps:
+      - run: echo source-is-audited
+  source-is-secure:
+    runs-on: docker
     steps:
       - uses: actions/checkout@v7
         with:
@@ -82,6 +93,6 @@ jobs:
       - uses: actions/upload-artifact@v3
         if: ${{ always() }}
         with:
-          name: reports-source-is-audited-${{ github.run_id }}
+          name: reports-source-is-secure-${{ github.run_id }}
           path: reports/
           if-no-files-found: warn
