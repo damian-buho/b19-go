@@ -4,8 +4,12 @@ SPDX-FileCopyrightText: 2026 Damián Búho <damian.buho@proton.me>
 SPDX-License-Identifier: MIT
 -->
 
+<!-- textlint-disable terminology,common-misspellings -->
+
 # Постійні кеші збирання та модулів Go
 
 - `GOCACHE` і `GOMODCACHE` монтується як постійні кеші BuildKit і зберігаються між збираннями на тому самому хості.
 - Повторні збирання повторно використовують уже скомпільовані пакети та завантажені модулі замість нового отримання.
 - Кеш спільний (режим locked), що забезпечує безпечний паралельний доступ.
+
+<!-- textlint-enable -->

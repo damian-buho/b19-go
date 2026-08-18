@@ -4,9 +4,13 @@ SPDX-FileCopyrightText: 2026 Damián Búho <damian.buho@proton.me>
 SPDX-License-Identifier: MIT
 -->
 
+<!-- textlint-disable terminology,common-misspellings -->
+
 # Інструментальний ланцюжок Go з upstream-тарбола
 
 - Go встановлюється з офіційного upstream-тарбола (не з APT), зафіксованого на конкретній версії з перевіркою SHA-512.
 - Тригери сканерів вразливостей (вбудовані тестові PEM-файли) видаляються з дерева початкового коду Go.
 - Телеметрію Go типово вимкнено.
 - Містить `git` для розв’язання модулів і `binutils` для лінкування.
+
+<!-- textlint-enable -->
