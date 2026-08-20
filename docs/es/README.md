@@ -28,7 +28,7 @@ Distribución de Go mantenida por la comunidad, basada en B19/Ubuntu
 - Cadena de herramientas Go desde el tarball upstream
 - Compilaciones estáticas con CGO desactivado por defecto
 
-### Heredado de B19/Ubuntu 1.4.1
+### Heredado de B19/Ubuntu
 
 - Caché APT persistente entre compilaciones
 - Gestión de procesos de servicio con enrutado de logs (b19-exec)
