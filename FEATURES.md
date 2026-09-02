@@ -16,23 +16,22 @@ SPDX-License-Identifier: MIT
 - `GORISCV64=rva20u64` targets the RISC-V RVA20U64 profile.
 - All three profiles target modern hardware rather than oldest-compatible silicon.
 
-### Binary stripping with size reporting (b19-strip)
+### Binary stripping with size reporting
 
-- Any binary can be stripped in-place with automatic before/after size measurement and percentage reduction logged.
-- Reduces final image size by removing debug symbols and unnecessary metadata from compiled binaries.
+- Compiled binaries are stripped in-place with before/after size measurement logged at build time.
+- Removes debug symbols and unnecessary metadata to reduce final image size.
+- Size savings are visible immediately, making it easy to track the impact of stripping.
 
 ### Cross-compilation for multiple architectures
 
-- `B19_GO_CROSS_ARCHES` defines a list of target architectures (default: amd64, arm64, riscv64).
-- Packages listed in `build.go.deps` are cross-built for every architecture in the list, producing `<binary>.<arch>` outputs.
-- Enables single-pass multi-arch binary production from one builder (e.g., `dasel.amd64`, `dasel.arm64`, `dasel.riscv64` from one amd64 build).
-- Target architecture list is overridable per downstream consumer.
+- Cross-compile for multiple architectures from a single builder image without separate build environments.
+- Default target set includes amd64, arm64, and riscv64; overridable per downstream consumer.
+- Produces architecture-suffixed binaries in a single pass, ready for multi-arch image publishing.
 
 ### Persistent Go build and module caches
 
-- `GOCACHE` and `GOMODCACHE` are mounted as BuildKit persistent caches, surviving across builds on the same host.
-- Repeated builds reuse compiled packages and downloaded modules instead of re-fetching.
-- Cache is shared (locked mode) to allow safe concurrent access.
+- Go build artifacts and downloaded modules persist across builds, so repeated builds skip recompilation and re-fetching.
+- Cache is shared across concurrent builds in locked mode for safe parallel access.
 
 ### Declarative Go package installation (go.deps)
 
@@ -48,10 +47,10 @@ SPDX-License-Identifier: MIT
 - Go telemetry is disabled by default.
 - Includes `git` for module resolution and `binutils` for linking.
 
-### CGO-disabled static builds by default
+### Static builds by default
 
-- `CGO_ENABLED=0` is the default, producing statically linked binaries with no libc dependency.
-- Binaries built-in this image work on any Linux system regardless of the C library installed.
+- Binaries are built without C library dependencies by default, so they work on any Linux system regardless of distro or libc version.
+- No CGO configuration needed — static linking is the default.
 
 ## Inherited from B19/Ubuntu
 
@@ -125,11 +124,12 @@ SPDX-License-Identifier: MIT
 
 ### Built-in health monitoring (healthcheck.d)
 
-- Docker-native healthcheck declared in the base image and inherited by all downstream images with no extra configuration.
-- Eight default checks ship in the base image: disk space, filesystem writability and a TCP listen probe run everywhere; HTTPS connectivity, DNS resolution and TCP reachability run only where `B19_HEALTH_EGRESS=true`, so a container that never reaches the internet carries no check a third party can fail.
-- Egress checks are fault-tolerant — success on any target counts as pass.
-- All egress checks automatically skip in offgrid mode; all checks can be disabled at runtime.
-- Downstream images add service-specific checks (HTTP endpoints, database connections, process liveness) by dropping scripts into a directory.
+- Docker-native healthcheck inherited by every downstream image with no extra configuration.
+- Egress checks are opt-in: a container that never reaches the internet carries no check a third party can fail, while one whose job is the internet reports unhealthy the moment the outside is gone.
+- Works the same offline as online — egress checks stand down automatically under offgrid mode.
+- Adding a check is dropping a script in a directory, not writing Docker plumbing.
+
+See [use-healthcheck.d](../how-to/use-healthcheck.d.md) for the check list, slot numbering, and configuration.
 
 ### Multilingual shell output (b19-i18n)
 
@@ -215,6 +215,7 @@ SPDX-License-Identifier: MIT
 - Jinja2-compatible template rendering at both build time and container startup.
 - Drop a `.j2` file anywhere in the app directory; it is discovered at build time and rendered at every startup with all environment variables available.
 - Runtime rendering is parallel and automatic — downstream images get it with zero configuration.
+- Skip specific templates at runtime with `B19_J2_SKIP_FILES` (comma-separated basenames).
 - Immutable mode (`B19_IMMUTABLE=Y`) locks the filesystem to build-time state, skipping all runtime rendering.
 
 ### Built-in test framework (test.d)
