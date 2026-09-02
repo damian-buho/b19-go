@@ -4,7 +4,7 @@ SPDX-FileCopyrightText: 2026 Damián Búho <damian.buho@proton.me>
 SPDX-License-Identifier: MIT
 -->
 
-# CGO-disabled static builds by default
+# Static builds by default
 
-- `CGO_ENABLED=0` is the default, producing statically linked binaries with no libc dependency.
-- Binaries built-in this image work on any Linux system regardless of the C library installed.
+- Binaries are built without C library dependencies by default, so they work on any Linux system regardless of distro or libc version.
+- No CGO configuration needed — static linking is the default.

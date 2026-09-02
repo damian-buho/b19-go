@@ -6,6 +6,5 @@ SPDX-License-Identifier: MIT
 
 # Persistent Go build and module caches
 
-- `GOCACHE` and `GOMODCACHE` are mounted as BuildKit persistent caches, surviving across builds on the same host.
-- Repeated builds reuse compiled packages and downloaded modules instead of re-fetching.
-- Cache is shared (locked mode) to allow safe concurrent access.
+- Go build artifacts and downloaded modules persist across builds, so repeated builds skip recompilation and re-fetching.
+- Cache is shared across concurrent builds in locked mode for safe parallel access.

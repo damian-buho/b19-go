@@ -4,7 +4,8 @@ SPDX-FileCopyrightText: 2026 Damián Búho <damian.buho@proton.me>
 SPDX-License-Identifier: MIT
 -->
 
-# Binary stripping with size reporting (b19-strip)
+# Binary stripping with size reporting
 
-- Any binary can be stripped in-place with automatic before/after size measurement and percentage reduction logged.
-- Reduces final image size by removing debug symbols and unnecessary metadata from compiled binaries.
+- Compiled binaries are stripped in-place with before/after size measurement logged at build time.
+- Removes debug symbols and unnecessary metadata to reduce final image size.
+- Size savings are visible immediately, making it easy to track the impact of stripping.
