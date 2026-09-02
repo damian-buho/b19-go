@@ -19,12 +19,12 @@ Community-maintained distribution of Go based on B19/Ubuntu
 ## Features
 
 - Architecture-optimized builds
-- Binary stripping with size reporting (b19-strip)
+- Binary stripping with size reporting
 - Cross-compilation for multiple architectures
 - Persistent Go build and module caches
 - Declarative Go package installation (go.deps)
 - Go toolchain from upstream tarball
-- CGO-disabled static builds by default
+- Static builds by default
 
 ### Inherited from B19/Ubuntu
 
