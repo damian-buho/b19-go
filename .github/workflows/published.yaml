@@ -53,21 +53,11 @@ env:
   M6E_TAG: ${{ vars.BASE_IMAGE_DEFAULT_VERSION || 'latest' }}
   M6E_RUN_SCOPE: ${{ github.run_id }}-${{ github.run_attempt }}
 jobs:
-  artifact-ready:
+  container-is-ok:
     runs-on: ubuntu-latest
-    needs: ["built"]
+    needs: ["images-are-ok"]
     steps:
-      - run: echo artifact-ready
-  built:
-    runs-on: ubuntu-latest
-    needs: ["source-is-ready"]
-    steps:
-      - run: echo built
-  container-is-ready:
-    runs-on: ubuntu-latest
-    needs: ["images-are-current"]
-    steps:
-      - run: echo container-is-ready
+      - run: echo container-is-ok
   container-is-verified:
     runs-on: ${{ matrix.M6E_RUNNER }}
     needs: ["container-ready-to-test"]
@@ -123,14 +113,14 @@ jobs:
           network: ci-b19-go-${{ matrix.M6E_ARCH }}-${{ env.M6E_RUN_SCOPE }}-network
   container-ready-to-test:
     runs-on: ubuntu-latest
-    needs: ["container-is-ready"]
+    needs: ["container-is-ok"]
     steps:
       - run: echo container-ready-to-test
-  documentation-is-ready:
+  documentation-is-ok:
     runs-on: ubuntu-latest
     needs: ["documentation-passes-lint"]
     steps:
-      - run: echo documentation-is-ready
+      - run: echo documentation-is-ok
   documentation-passes-lint:
     runs-on: ubuntu-latest
     steps:
@@ -156,7 +146,7 @@ jobs:
       - run: echo fetched
   image-is-built:
     runs-on: ${{ matrix.M6E_RUNNER }}
-    needs: ["source-is-ready"]
+    needs: ["fetched", "inputs-are-ok"]
     concurrency:
       group: build-${{ github.repository }}-${{ toJSON(matrix) }}
       cancel-in-progress: false
@@ -170,7 +160,7 @@ jobs:
           - M6E_ARCH: "arm64"
             M6E_RUNNER: "ubuntu-24.04-arm"
           - M6E_ARCH: "riscv64"
-            M6E_RUNNER: "ubuntu-26.04-riscv"
+            M6E_RUNNER: "ubuntu-latest"
     env:
       M6E_ARCH: ${{ matrix.M6E_ARCH }}
       M6E_NAMESPACE: b19
@@ -195,11 +185,9 @@ jobs:
         with:
           submodules: true
           persist-credentials: false
-      - name: enable containerd image store
-        # GHA-hosted docker lacks the containerd snapshotter the docker/image exporter needs; self-hosted forgejo runners ship it enabled already.
-        run: |
-          echo '{"features":{"containerd-snapshotter":true}}' | sudo tee /etc/docker/daemon.json
-          sudo systemctl restart docker
+      - name: use an isolated buildx builder
+        # the docker driver's image exporter needs the host's containerd store; docker-container carries its own, so no host config or restart is needed on any GHA runner flavor.
+        run: docker buildx create --name ci --driver docker-container --use
       - name: container-build
         uses: projectfile-org/actions/container-build/buildx@afa4711d0aa234f2a57295baf3aa3aad3ad99ba3 # v1
         with:
@@ -231,7 +219,7 @@ jobs:
           platform: ${{ matrix.M6E_ARCH }}
   image-is-ready:
     runs-on: ubuntu-latest
-    needs: ["container-is-verified", "image-is-secure", "image-is-valid"]
+    needs: ["container-is-verified", "image-is-secure"]
     steps:
       - run: echo image-is-ready
   image-is-secure:
@@ -246,7 +234,7 @@ jobs:
           - M6E_ARCH: "arm64"
             M6E_RUNNER: "ubuntu-24.04-arm"
           - M6E_ARCH: "riscv64"
-            M6E_RUNNER: "ubuntu-26.04-riscv"
+            M6E_RUNNER: "ubuntu-latest"
     env:
       M6E_ARCH: ${{ matrix.M6E_ARCH }}
       M6E_IMAGE_ARCHIVE: image-${{ matrix.M6E_ARCH }}-${{ github.run_id }}.tar
@@ -300,17 +288,17 @@ jobs:
           path: reports/
           if-no-files-found: warn
           overwrite: true
-  image-is-valid:
-    runs-on: ubuntu-latest
-    needs: ["image-is-built"]
-    steps:
-      - run: echo image-is-valid
-  images-are-current:
+  images-are-ok:
     runs-on: ubuntu-latest
     needs: ["image-is-built", "secrets-ready"]
     steps:
-      - run: echo images-are-current
-  projectfile-is-synced:
+      - run: echo images-are-ok
+  inputs-are-ok:
+    runs-on: ubuntu-latest
+    needs: ["documentation-is-ok", "projectfile-is-ok", "source-is-ok"]
+    steps:
+      - run: echo inputs-are-ok
+  projectfile-is-ok:
     runs-on: ubuntu-latest
     needs: ["projectfile-is-valid"]
     steps:
@@ -406,7 +394,7 @@ jobs:
       - run: echo published
   ready-to-publish:
     runs-on: ubuntu-latest
-    needs: ["artifact-ready", "documentation-is-ready", "image-is-ready", "source-is-compliant", "source-is-secure"]
+    needs: ["image-is-ready", "inputs-are-ok"]
     steps:
       - run: echo ready-to-publish
   secrets-ready:
@@ -433,11 +421,11 @@ jobs:
           image: ${{ vars.D9T_PYTHON_TOOLS_IMAGE || format('{0}/d9t/python-tools', vars.SOURCE_DOCKER_REGISTRY || 'ghcr.io/damian-buho') }}
           version: ${{ env.M6E_TAG }}
           run: reuse lint
-  source-is-ready:
+  source-is-ok:
     runs-on: ubuntu-latest
-    needs: ["fetched", "projectfile-is-synced", "source-is-tested", "source-passes-lint"]
+    needs: ["source-is-compliant", "source-is-secure", "source-is-tested", "source-passes-lint"]
     steps:
-      - run: echo source-is-ready
+      - run: echo source-is-ok
   source-is-secure:
     runs-on: ubuntu-latest
     env:
