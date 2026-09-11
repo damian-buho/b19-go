@@ -60,11 +60,6 @@ pf-cli-managed: yes
 
 Див. [FEATURES.md](FEATURES.md), щоб переглянути повний перелік.
 
-## Що надає цей проєкт
-
-- **Образ контейнера** `ghcr.io/damian-buho/b19/go:latest`
-- **Образ контейнера** `docker.io/damianbuho/b19-go:latest`
-
 ## Підтримувані платформи
 
 - `linux/amd64`
@@ -73,47 +68,11 @@ pf-cli-managed: yes
 
 ## Встановлення
 
-Завантажте опублікований образ контейнера:
-
-### Завантажити з GHCR
-
-```sh
-docker pull ghcr.io/damian-buho/b19/go:latest
-```
-
-### Завантажити з DockerHub
-
-```sh
-docker pull docker.io/damianbuho/b19-go:latest
-```
-
-Стабільні випуски також публікують теґи `X.Y.Z`, `X.Y` і `X` — завантажте той рівень точності, який хочете зафіксувати.
-
 Якщо наведені вище реєстри недоступні, завантажте з джерела:
-
-### Завантажити з Kiota
 
 ```sh
 docker pull kiota.ch/b19/go:latest
 ```
-
-## Використання
-
-Побудуйте на основі цього образу:
-
-### З GHCR
-
-```dockerfile
-FROM ghcr.io/damian-buho/b19/go:latest
-```
-
-### З DockerHub
-
-```dockerfile
-FROM docker.io/damianbuho/b19-go:latest
-```
-
-Для рекомендованого багатоетапного шаблону та системи хуків збірки (build.d) створіть похідний проєкт за допомогою `b19/scripts/scaffold.sh` з [m6e/b19](https://kiota.ch/m6e/b19).
 
 ## Збирання
 
