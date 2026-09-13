@@ -1,0 +1,19 @@
+# SPDX-FileCopyrightText: 2026 Damián Búho <damian.buho@proton.me>
+#
+# SPDX-License-Identifier: MIT
+
+# Declarative Go packages to install via 'go install' during build.
+# Format: <package@version> [ENV_VARS]
+# One package per line. Empty lines and lines starting with # are ignored.
+
+# Example: install dasel (JSON/YAML/TOML query tool) at specific version
+# github.com/tomwright/dasel/v2/cmd/dasel@v2.8.0
+
+# Example: install yq (YAML processor) at latest version
+# github.com/mikefarah/yq/v4@latest
+
+# Example: install with custom build tags / CGO flags
+# github.com/example/tool@v1.2.3 CGO_ENABLED=1 GOFLAGS="-tags=netgo"
+
+# Example: install delta (diff viewer) at latest
+# github.com/dandavison/delta@latest

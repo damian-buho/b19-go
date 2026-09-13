@@ -1,0 +1,18 @@
+# SPDX-FileCopyrightText: 2026 Damián Búho <damian.buho@proton.me>
+#
+# SPDX-License-Identifier: MIT
+
+# Declarative Go packages to cross-compile for all arches in B19_GO_CROSS_ARCHES.
+# Format: <package@version> (one per line)
+# Binary name is derived from the package path (last component before @).
+# Output: ${GOBIN}/<binary>.<arch> (e.g. dasel.amd64, dasel.arm64, dasel.riscv64).
+# Used to break OS-layer bootstrap cycles — downstream consumers pick the right arch binary.
+
+# Example: cross-compile dasel for amd64, arm64, riscv64
+# github.com/tomwright/dasel/v2/cmd/dasel@v2.8.0
+
+# Example: cross-compile yq for all supported arches
+# github.com/mikefarah/yq/v4@latest
+
+# Example: cross-compile a custom tool
+# github.com/example/mytool/cmd/mytool@v1.0.0
