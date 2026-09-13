@@ -8,7 +8,7 @@ pf-cli-managed: yes
 
 [English](../../README.md) · [Español](../es/README.md)
 
-# B19/Go
+# B19 / Go
 
 Дистрибуція Go з підтримкою спільноти на основі B19/Ubuntu
 

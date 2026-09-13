@@ -6,7 +6,7 @@ pf-cli-managed: yes
 
 [Español](docs/es/README.md) · [Українська](docs/uk/README.md)
 
-# B19/Go
+# B19 / Go
 
 Community-maintained distribution of Go based on B19/Ubuntu
 
