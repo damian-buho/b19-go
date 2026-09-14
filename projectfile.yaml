@@ -29,6 +29,14 @@ keywords:
   - compiler
   - docker
 kind: SoftwareSourceCode
+links:
+  - label:
+      en: B19 / Go on kiota.ch
+      es: B19 / Go en kiota.ch
+      uk: B19 / Go на kiota.ch
+    preferred: true
+    type: source-code
+    url: https://kiota.ch/b19/go
 org:
   b19:
     scaffold:
@@ -46,18 +54,10 @@ org:
     operating-system:
       - linux
     status: maintained
-technologies:
-  - go
 repositories:
   - branch: main
     role: origin
     type: git
     url: ssh://git@kiota.ch/b19/go.git
-links:
-  - label:
-      en: B19 / Go on kiota.ch
-      es: B19 / Go en kiota.ch
-      uk: B19 / Go на kiota.ch
-    preferred: true
-    type: source-code
-    url: https://kiota.ch/b19/go
+technologies:
+  - go
