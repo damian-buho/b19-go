@@ -29,50 +29,6 @@ keywords:
   - compiler
   - docker
 kind: SoftwareSourceCode
-links:
-  - label:
-      en: B19/Go on Codeberg
-      es: B19/Go en Codeberg
-      uk: B19/Go на Codeberg
-    tags:
-      - public
-      - badges
-      - badges-gitea
-    type: source-code
-    url: https://codeberg.org/b19/go
-  - label:
-      en: B19/Go on GitHub
-      es: B19/Go en GitHub
-      uk: B19/Go на GitHub
-    tags:
-      - public
-      - badges
-      - badges-github
-    type: source-code
-    url: https://github.com/damian-buho/b19-go
-  - label:
-      en: B19/Go on kiota.ch
-      es: B19/Go en kiota.ch
-      uk: B19/Go на kiota.ch
-    preferred: true
-    type: source-code
-    url: https://kiota.ch/b19/go
-  - label:
-      en: Issues on Codeberg
-      es: Incidencias en Codeberg
-      uk: Issues на Codeberg
-    tags:
-      - support
-    type: bugs
-    url: https://codeberg.org/b19/go/issues
-  - label:
-      en: Issues on GitHub
-      es: Incidencias en GitHub
-      uk: Issues на GitHub
-    tags:
-      - support
-    type: bugs
-    url: https://github.com/damian-buho/b19-go/issues
 org:
   b19:
     scaffold:
@@ -90,17 +46,18 @@ org:
     operating-system:
       - linux
     status: maintained
+technologies:
+  - go
 repositories:
-  - issues: true
-    role: mirror
-    type: git
-    url: ssh://git@codeberg.org/b19/go.git
-  - role: mirror
-    type: git
-    url: git@github.com:damian-buho/b19-go.git
   - branch: main
     role: origin
     type: git
     url: ssh://git@kiota.ch/b19/go.git
-technologies:
-  - go
+links:
+  - label:
+      en: B19 / Go on kiota.ch
+      es: B19 / Go en kiota.ch
+      uk: B19 / Go на kiota.ch
+    preferred: true
+    type: source-code
+    url: https://kiota.ch/b19/go
