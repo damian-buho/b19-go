@@ -214,6 +214,7 @@ jobs:
       - run: echo image-is-ready
   image-is-released:
     runs-on: docker
+    needs: ["publish-image"]
     if: startsWith(github.ref, 'refs/tags/')
     strategy:
       matrix:
