@@ -230,11 +230,7 @@ jobs:
     permissions:
       contents: write
     if: startsWith(github.ref, 'refs/tags/')
-    strategy:
-      matrix:
-        M6E_ARCH: ["amd64", "arm64", "riscv64"]
     env:
-      M6E_ARCH: ${{ matrix.M6E_ARCH }}
       RELEASE_TAG: ${{ github.ref_name }}
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
