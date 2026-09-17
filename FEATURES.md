@@ -52,7 +52,7 @@ SPDX-License-Identifier: MIT
 - Binaries are built without C library dependencies by default, so they work on any Linux system regardless of distro or libc version.
 - No CGO configuration needed — static linking is the default.
 
-## Inherited from B19/Ubuntu
+## Inherited from B19 / Ubuntu
 
 ### Persistent APT cache across builds
 
