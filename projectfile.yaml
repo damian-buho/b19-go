@@ -23,9 +23,9 @@ includes:
   - .makefile/b19/images/ubuntu.yaml
   - .makefile/b19/traits/release.yaml
   - https://kiota.ch/b19/metadata/raw/branch/main/include.yaml
-  - https://kiota.ch/damian-buho/metadata/raw/branch/main/registry/ghcr.yaml
   - https://kiota.ch/damian-buho/metadata/raw/branch/main/forge/github.yaml
   - https://kiota.ch/damian-buho/metadata/raw/branch/main/include.yaml
+  - https://kiota.ch/damian-buho/metadata/raw/branch/main/registry/ghcr.yaml
 keywords:
   - go
   - golang
@@ -63,8 +63,7 @@ links:
     priority: 10
     type: source-code
     url: https://kiota.ch/b19/go
-  - derived: true
-    label:
+  - label:
       en: Packages on GHCR
       es: Paquetes en GHCR
       uk: Пакунки на GHCR
