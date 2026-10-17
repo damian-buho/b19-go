@@ -18,6 +18,7 @@ identity:
   version: 0.8.2
   modified: "2026-09-14"
   released: "2026-10-10"
+  visibility: public
 includes:
   - .makefile/b19/ci.yaml
   - .makefile/b19/images/ubuntu.yaml
@@ -38,9 +39,9 @@ keywords:
 kind: SoftwareSourceCode
 links:
   - label:
-      en: B19 / Go on GitHub
-      es: B19 / Go en GitHub
-      uk: B19 / Go на GitHub
+      en: Repository on GitHub
+      es: Repositorio en GitHub
+      uk: Репозиторій на GitHub
     priority: 80
     tags:
       - public
@@ -58,9 +59,9 @@ links:
     type: bugs
     url: https://github.com/damian-buho/b19-go/issues
   - label:
-      en: B19 / Go on kiota.ch
-      es: B19 / Go en kiota.ch
-      uk: B19 / Go на kiota.ch
+      en: Repository on kiota.ch
+      es: Repositorio en kiota.ch
+      uk: Репозиторій на kiota.ch
     preferred: true
     priority: 10
     type: source-code
