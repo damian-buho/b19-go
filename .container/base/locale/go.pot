@@ -4,9 +4,9 @@
 # SPDX-License-Identifier: MIT
 msgid ""
 msgstr ""
-"Project-Id-Version: go 1.1.5\n"
-"Report-Msgid-Bugs-To: https://codeberg.org/b19/go/issues\n"
-"POT-Creation-Date: 2026-09-07 03:45+0000\n"
+"Project-Id-Version: go 0.8.2-10-gfc46084\n"
+"Report-Msgid-Bugs-To: https://github.com/damian-buho/b19-go/issues\n"
+"POT-Creation-Date: 2026-10-17 03:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -81,6 +81,58 @@ msgstr ""
 
 #: .container/base/build.d/base/post/300-install-go.sh:26
 msgid "Turn off telemetry"
+msgstr ""
+
+#: .container/user/command.d/auto-go-build:12
+msgid "unknown argument %s, the artifact record says what to build"
+msgstr ""
+
+#: .container/user/command.d/auto-go-build:38
+msgid "ignoring %s=%s, an unexpanded placeholder"
+msgstr ""
+
+#: .container/user/command.d/auto-go-build:41
+msgid "version %s from %s"
+msgstr ""
+
+#: .container/user/command.d/auto-go-build:46
+msgid "version %s, no ref, M6E_VERSION or git tag to read"
+msgstr ""
+
+#: .container/user/command.d/auto-go-build:60
+msgid "no kind: binary artifact in %s, nothing to build"
+msgstr ""
+
+#: .container/user/command.d/auto-go-build:70
+msgid "go mod download failed %s times, giving up"
+msgstr ""
+
+#: .container/user/command.d/auto-go-build:74
+msgid "go mod download attempt %s failed, retrying in %s s"
+msgstr ""
+
+#: .container/user/command.d/auto-go-build:86
+msgid "%s is not built for %s/%s, its record lists %s × %s"
+msgstr ""
+
+#: .container/user/command.d/auto-go-build:97
+msgid "%s excludes the %s/%s cell"
+msgstr ""
+
+#: .container/user/command.d/auto-go-build:107
+msgid "asset %s keeps a placeholder, only {command} {os} {arch} {ext} exist"
+msgstr ""
+
+#: .container/user/command.d/auto-go-build:116
+msgid "building %s %s for %s/%s from %s into %s"
+msgstr ""
+
+#: .container/user/command.d/auto-go-build:123
+msgid "no binary artifact is built for %s/%s, the cell is outside the record"
+msgstr ""
+
+#: .container/user/command.d/auto-go-build:126
+msgid "built %s binaries for %s/%s"
 msgstr ""
 
 #: .container/user/test.d/1300-compile-test.sh:26

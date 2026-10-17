@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: b19-go\n"
-"Report-Msgid-Bugs-To: i18n@b19.dev\n"
-"POT-Creation-Date: 2026-05-02 16:15-0300\n"
+"Report-Msgid-Bugs-To: https://github.com/damian-buho/b19-go/issues\n"
+"POT-Creation-Date: 2026-10-17 03:01+0000\n"
 "PO-Revision-Date: 2026-02-18 00:00+0000\n"
 "Last-Translator: b19 team\n"
 "Language-Team: Ukrainian\n"
@@ -17,66 +17,126 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 
-#: .container/base/tools.d/install-go-from-deps:25
-msgid "Install package with env"
-msgstr "Встановити пакет з env"
-
-#: .container/base/tools.d/install-go-from-deps:28
-msgid "Install package"
-msgstr "Встановити пакет"
-
-#: .container/base/tools.d/install-go-from-deps:33
-msgid "Remove"
-msgstr "Видалити"
-
-#: .container/base/tools.d/b19-strip:13
+#: .container/base/tools.d/b19-strip:19
 msgid "Binary path required"
 msgstr "Потрібен шлях до бінарного файлу"
 
-#: .container/base/tools.d/b19-strip:18
+#: .container/base/tools.d/b19-strip:24
 msgid "Binary not found: %s"
 msgstr "Бінарний файл не знайдено: %s"
 
-#: .container/base/tools.d/b19-strip:26
+#: .container/base/tools.d/b19-strip:32
 msgid "Strip"
 msgstr "Очистити символи"
 
-#: .container/base/tools.d/b19-strip:33
+#: .container/base/tools.d/b19-strip:39
 msgid "Reduced %s from %s to %s (%s%%)"
 msgstr "Зменшено %s з %s до %s (%s%%)"
 
-#: .container/base/tools.d/build-go-from-deps:18
+#: .container/base/tools.d/build-go-from-deps:22
 msgid "Cross-build dep list detected: %s"
 msgstr "Виявлено перелік залежностей для крос-компіляції: %s"
 
-#: .container/base/tools.d/build-go-from-deps:27
+#: .container/base/tools.d/build-go-from-deps:31
 msgid "Target arches: %s"
 msgstr "Цільові архітектури: %s"
 
-#: .container/base/tools.d/build-go-from-deps:41
+#: .container/base/tools.d/build-go-from-deps:45
 msgid "Init scratch module for %s"
-msgstr ""
-
-#: .container/base/tools.d/build-go-from-deps:43
-msgid "Fetch %s"
-msgstr ""
+msgstr "Ініціалізація тимчасового модуля для %s"
 
 #: .container/base/tools.d/build-go-from-deps:47
+msgid "Fetch %s"
+msgstr "Завантаження %s"
+
+#: .container/base/tools.d/build-go-from-deps:51
 msgid "Cross-build %s for %s"
 msgstr "Крос-компіляція %s для %s"
 
-#: .container/base/tools.d/build-go-from-deps:55
+#: .container/base/tools.d/build-go-from-deps:59
 msgid "Remove %s"
 msgstr "Видалити %s"
 
-#: .container/base/tools.d/build-go-from-deps:58
+#: .container/base/tools.d/build-go-from-deps:62
 msgid "Cross-build dep list not found: %s"
 msgstr "Перелік залежностей для крос-компіляції не знайдено: %s"
 
-#: .container/base/build.d/base/post/300-install-go.sh:8
+#: .container/base/tools.d/install-go-from-deps:29
+msgid "Install package with env"
+msgstr "Встановити пакет з env"
+
+#: .container/base/tools.d/install-go-from-deps:32
+msgid "Install package"
+msgstr "Встановити пакет"
+
+#: .container/base/tools.d/install-go-from-deps:37
+msgid "Remove"
+msgstr "Видалити"
+
+#: .container/base/build.d/base/post/300-install-go.sh:12
 msgid "Extract %s"
 msgstr "Розпакувати %s"
 
-#: .container/base/build.d/base/post/300-install-go.sh:15
+#: .container/base/build.d/base/post/300-install-go.sh:22
+msgid "Strip vulnerability-scanner trigger: %s"
+msgstr "Прибрати тригер сканера вразливостей: %s"
+
+#: .container/base/build.d/base/post/300-install-go.sh:26
 msgid "Turn off telemetry"
 msgstr "Вимкнути телеметрію"
+
+#: .container/user/command.d/auto-go-build:12
+msgid "unknown argument %s, the artifact record says what to build"
+msgstr "невідомий аргумент %s, що збирати, визначає запис артефактів"
+
+#: .container/user/command.d/auto-go-build:38
+msgid "ignoring %s=%s, an unexpanded placeholder"
+msgstr "ігнорується %s=%s, нерозгорнутий заповнювач"
+
+#: .container/user/command.d/auto-go-build:41
+msgid "version %s from %s"
+msgstr "версія %s з %s"
+
+#: .container/user/command.d/auto-go-build:46
+msgid "version %s, no ref, M6E_VERSION or git tag to read"
+msgstr "версія %s, немає ref, M6E_VERSION чи тегу git"
+
+#: .container/user/command.d/auto-go-build:60
+msgid "no kind: binary artifact in %s, nothing to build"
+msgstr "у %s немає артефакту kind: binary, нічого збирати"
+
+#: .container/user/command.d/auto-go-build:70
+msgid "go mod download failed %s times, giving up"
+msgstr "go mod download не вдався %s разів, припинено"
+
+#: .container/user/command.d/auto-go-build:74
+msgid "go mod download attempt %s failed, retrying in %s s"
+msgstr "спроба %s go mod download не вдалася, повтор через %s с"
+
+#: .container/user/command.d/auto-go-build:86
+msgid "%s is not built for %s/%s, its record lists %s × %s"
+msgstr "%s не збирається для %s/%s, його запис містить %s × %s"
+
+#: .container/user/command.d/auto-go-build:97
+msgid "%s excludes the %s/%s cell"
+msgstr "%s виключає комірку %s/%s"
+
+#: .container/user/command.d/auto-go-build:107
+msgid "asset %s keeps a placeholder, only {command} {os} {arch} {ext} exist"
+msgstr "ресурс %s містить заповнювач, існують лише {command} {os} {arch} {ext}"
+
+#: .container/user/command.d/auto-go-build:116
+msgid "building %s %s for %s/%s from %s into %s"
+msgstr "збирання %s %s для %s/%s з %s у %s"
+
+#: .container/user/command.d/auto-go-build:123
+msgid "no binary artifact is built for %s/%s, the cell is outside the record"
+msgstr "для %s/%s не збирається жоден бінарний артефакт, комірка поза записом"
+
+#: .container/user/command.d/auto-go-build:126
+msgid "built %s binaries for %s/%s"
+msgstr "зібрано бінарних файлів: %s для %s/%s"
+
+#: .container/user/test.d/1300-compile-test.sh:26
+msgid "go-%s compile test passed"
+msgstr "тест компіляції go-%s пройдено"
