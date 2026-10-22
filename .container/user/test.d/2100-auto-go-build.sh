@@ -51,6 +51,13 @@ if [[ "$(uname -m)" == x86_64 ]]; then
   [[ "${stamped}" == 4.5.6 ]] || { echo "FATAL: the placeholder was not skipped, stamp reads ${stamped}" >&2; exit 1; }
 fi
 
+# The release tag wins over the branch name a main run carries
+(cd "${project}" && GITHUB_REF_NAME=main M6E_RELEASE_TAG=7.8.9 TARGET_OS=linux TARGET_ARCH=amd64 auto-go-build)
+if [[ "$(uname -m)" == x86_64 ]]; then
+  stamped="$("${project}/dist/fx-linux-x86_64" 2>&1)"
+  [[ "${stamped}" == 7.8.9 ]] || { echo "FATAL: the release tag lost to the ref name, stamp reads ${stamped}" >&2; exit 1; }
+fi
+
 # An excluded cell and a cell outside the lists both fail rather than build nothing green
 for cell in darwin/riscv64 windows/amd64; do
   if (cd "${project}" && TARGET_OS="${cell%/*}" TARGET_ARCH="${cell#*/}" auto-go-build) 2>/dev/null; then
