@@ -34,10 +34,6 @@ Go toolchain image. Used as builder for many o9s/f5m projects and d9t/go-tools.
 - `go.deps` — packages for `go install` into the current image (declarative)
 - `build.go.deps` — packages cross-built for every arch in `B19_GO_CROSS_ARCHES`; output named `<binary>.<arch>` in `${GOBIN}` (e.g. `dasel.amd64`, `dasel.arm64`, `dasel.riscv64`). Used to break OS-layer bootstrap cycles where a downstream consumer needs all-arch binaries from a single-arch builder pass (e.g. `b19/dasel` → `b19/ubuntu`).
 
-## Commands
-
-- `auto-go-build` — cross-compile each `kind: binary` artifact for the `TARGET_OS`/`TARGET_ARCH` cell (host otherwise) into `dirname(path)/<asset>`, reading `package`, `version-symbol` and the cell lists from the record through `pf-cli` (COPY’d from `projectfile/cli`, a copy cycle that releases like `b19/ubuntu` ← `b19/fd`); `go mod download` retries with backoff (`B19_GO_DOWNLOAD_RETRIES`, `B19_GO_DOWNLOAD_TIMEOUT`)
-
 ## Documentation
 
 - [Available make targets](@docs/MAKEFILE.md)
