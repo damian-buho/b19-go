@@ -18,6 +18,11 @@ Community-maintained distribution of Go built on B19/Ubuntu. This repository hol
 
 [![Publish pipeline on kiota.ch](https://kiota.ch/b19/go/badges/workflows/published.yaml/badge.svg?style=flat-square)](https://kiota.ch/b19/go/actions) [![Vulnerability audit on kiota.ch](https://kiota.ch/b19/go/badges/workflows/audited.yaml/badge.svg?style=flat-square)](https://kiota.ch/b19/go/actions) [![Dependency freshness on kiota.ch](https://kiota.ch/b19/go/badges/workflows/check-outdated.yaml/badge.svg?style=flat-square)](https://kiota.ch/b19/go/actions) [![Analysis sweep on kiota.ch](https://kiota.ch/b19/go/badges/workflows/analyzed.yaml/badge.svg?style=flat-square)](https://kiota.ch/b19/go/actions)
 
+## Upstream
+
+This project packages [Go](https://go.dev) (`BSD-3-Clause`).
+Thanks to: The Go Authors
+
 ## Features
 
 - Architecture-optimized builds
@@ -102,11 +107,6 @@ Pipeline entry points:
 ## Links
 
 - [Projectfile Specification](https://projectfile.org)
-
-## Upstream
-
-This project packages [Go](https://go.dev) (`BSD-3-Clause`).
-Thanks to: The Go Authors
 
 ## License
 

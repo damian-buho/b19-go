@@ -20,6 +20,11 @@ pf-cli-managed: yes
 
 [![Publish pipeline on kiota.ch](https://kiota.ch/b19/go/badges/workflows/published.yaml/badge.svg?style=flat-square)](https://kiota.ch/b19/go/actions) [![Vulnerability audit on kiota.ch](https://kiota.ch/b19/go/badges/workflows/audited.yaml/badge.svg?style=flat-square)](https://kiota.ch/b19/go/actions) [![Dependency freshness on kiota.ch](https://kiota.ch/b19/go/badges/workflows/check-outdated.yaml/badge.svg?style=flat-square)](https://kiota.ch/b19/go/actions) [![Analysis sweep on kiota.ch](https://kiota.ch/b19/go/badges/workflows/analyzed.yaml/badge.svg?style=flat-square)](https://kiota.ch/b19/go/actions)
 
+## Першоджерело
+
+Цей проєкт пакує [Go](https://go.dev) (`BSD-3-Clause`).
+Дякуємо: The Go Authors
+
 ## Можливості
 
 - Збірки, оптимізовані під архітектуру
@@ -104,11 +109,6 @@ make container-build
 ## Посилання
 
 - [Специфікація Projectfile](https://projectfile.org)
-
-## Першоджерело
-
-Цей проєкт пакує [Go](https://go.dev) (`BSD-3-Clause`).
-Дякуємо: The Go Authors
 
 ## Ліцензія
 

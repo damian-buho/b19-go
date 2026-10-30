@@ -20,6 +20,11 @@ Distribución de Go mantenida por la comunidad, construida sobre B19/Ubuntu. Est
 
 [![Publish pipeline on kiota.ch](https://kiota.ch/b19/go/badges/workflows/published.yaml/badge.svg?style=flat-square)](https://kiota.ch/b19/go/actions) [![Vulnerability audit on kiota.ch](https://kiota.ch/b19/go/badges/workflows/audited.yaml/badge.svg?style=flat-square)](https://kiota.ch/b19/go/actions) [![Dependency freshness on kiota.ch](https://kiota.ch/b19/go/badges/workflows/check-outdated.yaml/badge.svg?style=flat-square)](https://kiota.ch/b19/go/actions) [![Analysis sweep on kiota.ch](https://kiota.ch/b19/go/badges/workflows/analyzed.yaml/badge.svg?style=flat-square)](https://kiota.ch/b19/go/actions)
 
+## Proyecto original
+
+Este proyecto empaqueta [Go](https://go.dev) (`BSD-3-Clause`).
+Gracias a: The Go Authors
+
 ## Características
 
 - Compilaciones optimizadas por arquitectura
@@ -104,11 +109,6 @@ Puntos de entrada de la canalización:
 ## Enlaces
 
 - [Especificación de Projectfile](https://projectfile.org)
-
-## Proyecto original
-
-Este proyecto empaqueta [Go](https://go.dev) (`BSD-3-Clause`).
-Gracias a: The Go Authors
 
 ## Licencia
 
