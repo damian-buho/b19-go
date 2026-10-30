@@ -102,6 +102,7 @@ repositories:
 technologies:
   - go
 upstream:
-  - license: BSD-3-Clause
+  - authors: The Go Authors
+    license: BSD-3-Clause
     name: Go
     url: https://go.dev
