@@ -9,8 +9,4 @@ set -eou pipefail
 ACTUAL=$(get-go-version)
 EXPECTED=$(decomment < /deps/go/version.deps)
 
-if [ "${ACTUAL}" != "${EXPECTED}" ]
-then
-  echo "FATAL: expected ${EXPECTED}, got ${ACTUAL}" >&2
-  exit 1
-fi
+b19-assert equals "GO" "${EXPECTED}" "${ACTUAL}"
