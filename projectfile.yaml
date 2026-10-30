@@ -101,3 +101,7 @@ repositories:
     url: ssh://git@kiota.ch/b19/go.git
 technologies:
   - go
+upstream:
+  - license: BSD-3-Clause
+    name: Go
+    url: https://go.dev
